@@ -7,7 +7,16 @@ const testMsg = ref("Home View");
 </script>
 
 <template>
-  <div>{{ testMsg }}</div>
+  <div class="testDiv">
+    <span>{{ testMsg }}</span>
+  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.testDiv {
+  background: red;
+  span {
+    color: yellow;
+  }
+}
+</style>
