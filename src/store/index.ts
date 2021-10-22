@@ -1,27 +1,24 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
-const defaultState = {
-  count: 0
+// 導入所有文件
+const files = import.meta.globEager("./modules/*.ts");
+const modules = {};
+for (const key in files) {
+  const file = files[key].default;
+  if (file != undefined) {
+    // 截取文件名
+    modules[key.replace(/(\.\/modules\/)|(\.ts)/g, "")] = file;
+  }
 }
 
-// Create a new store instance.
-export default createStore({
-  state() {
-    return defaultState
-  },
-  mutations: {
-    increment(state: typeof defaultState) {
-      state.count++
-    }
-  },
-  actions: {
-    increment(context) {
-      context.commit('increment')
-    }
-  },
-  getters: {
-    double(state: typeof defaultState) {
-      return 2 * state.count
-    }
-  }
-})
+const store = createStore({
+  modules,
+  plugins: [
+    createPersistedState({
+      paths: ["persistedState"]
+    })
+  ]
+});
+
+export default store;

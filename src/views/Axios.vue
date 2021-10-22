@@ -3,13 +3,18 @@
 </template>
 
 <script lang="ts">
-import {} from "vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "../utils/axios";
+import { useStore } from "vuex";
 
 export default {
   setup() {
     const testMsg = ref("Axios View");
+    const store = useStore();
+
+    onMounted(() => {
+      console.log(store.getters["app/test"]);
+    });
 
     axios({
       url: "/users/XPoet",
