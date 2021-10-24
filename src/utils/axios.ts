@@ -1,35 +1,52 @@
 import Axios from "axios";
-
+import store from "@/store";
 
 const baseURL = "https://api.github.com";
 
-const axios = Axios.create({
+const service = Axios.create({
   baseURL,
-  timeout: 600000
+  withCredentials: false,
+  timeout: 5000
 });
 
-axios.interceptors.request.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+service.interceptors.request.use(
+  (config: any) => {
+    config.headers["Route"] = "Mem";
 
-axios.interceptors.response.use(
-  (response) => {
-    return response.data;
-  },
-  (error) => {
-    if (error.response && error.response.data) {
-      const code = error.response.status;
-      const msg = error.response.data.message;
-      console.log(error.response);
+    const token =
+      window.localStorage.getItem("accessToken") ??
+      store.getters["persistedState/token"];
+    if (token) {
+      // config.headers["authorization"] = "Bearer " + token;
+      config.headers["authorization"] = token;
     }
 
+    return config;
+  },
+  (error) => {
     return Promise.reject(error);
   }
 );
 
-export default axios
+service.interceptors.response.use(
+  (response) => {
+    if (response.status === 200 && response.data) {
+      return response.data;
+    } else {
+      return response;
+      // return Promise.reject(new Error(res.message || 'Error'));
+    }
+  },
+  (error) => {
+    const response = error.response;
+    // if (error.response && error.response.data) {
+    //   const code = error.response.status;
+    //   const msg = error.response.data.message;
+    //   console.log(error.response);
+    // }
+
+    return Promise.reject(response);
+  }
+);
+
+export default service;
