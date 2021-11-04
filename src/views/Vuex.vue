@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue'
 
 // defineProps<{ msg: string }>()
 
-const testMsg = ref("Vuex View");
+const testMsg = ref('Vuex View')
 </script>
 
 <template>

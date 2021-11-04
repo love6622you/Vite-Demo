@@ -5,7 +5,7 @@ export default {
     lang: 'en',
     modalStatus: {
       isShow: false,
-      type: ""
+      type: ''
     },
     test: '123test'
   },
@@ -17,9 +17,9 @@ export default {
   },
   mutations: {
     setLoading: (state: any, data: boolean) => {
-      state.loading = data;
+      state.loading = data
     },
-    setLang: (state:any ,value: any) => {
+    setLang: (state: any, value: any) => {
       state.lang = value
     }
     // setModalStatus: (state: any, data: object) => {
@@ -29,4 +29,4 @@ export default {
     // },
   },
   actions: {}
-};
+}

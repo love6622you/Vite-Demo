@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue'
 
 // defineProps<{ msg: string }>()
 
-const testMsg = ref("Home View");
+const testMsg = ref('Home View')
 </script>
 
 <template>
   <div class="testDiv">
-    <span>{{ $t("hello") }}</span>
+    <span>{{ $t('hello') }}</span>
     <img src="/static/img/nft1.png" alt="" />
     <div class="imageDiv"></div>
   </div>
@@ -22,7 +22,7 @@ const testMsg = ref("Home View");
   }
 }
 .imageDiv {
-  background-image: url("/static/img/nft2.png");
+  background-image: url('/static/img/nft2.png');
   width: 100%;
   height: 200px;
 }

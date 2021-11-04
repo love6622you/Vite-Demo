@@ -1,3 +1,3 @@
 export const tw = {
-    hello: '哈囉世界'
+  hello: '哈囉世界'
 }

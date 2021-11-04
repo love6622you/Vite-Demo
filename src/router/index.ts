@@ -1,28 +1,28 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "@/views/Home.vue";
-import Vuex from "@/views/Vuex.vue";
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import Home from '@/views/Home.vue'
+import Vuex from '@/views/Vuex.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home
   },
   {
-    path: "/vuex",
-    name: "Vuex",
+    path: '/vuex',
+    name: 'Vuex',
     component: Vuex
   },
   {
-    path: "/axios",
-    name: "Axios",
-    component: () => import("@/views/axios.vue")
+    path: '/axios',
+    name: 'Axios',
+    component: () => import('@/views/axios.vue')
   }
-];
+]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
-});
+})
 
-export default router;
+export default router
