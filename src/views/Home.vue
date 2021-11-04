@@ -9,6 +9,8 @@ const testMsg = ref("Home View");
 <template>
   <div class="testDiv">
     <span>{{ testMsg }}</span>
+    <img src="/static/img/nft1.png" alt="">
+    <div class="imageDiv"></div>
   </div>
 </template>
 
@@ -18,5 +20,10 @@ const testMsg = ref("Home View");
   span {
     color: yellow;
   }
+}
+.imageDiv {
+  background-image: url('/static/img/nft2.png');
+  width: 100%;
+  height: 200px;
 }
 </style>
