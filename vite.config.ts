@@ -6,12 +6,11 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [vue()],
   build: {
-    assetsDir: "",
     rollupOptions: {
       output: {
         chunkFileNames: "static/js/[name]-[hash].js",
         entryFileNames: "static/js/[name]-[hash].js",
-        // assetFileNames: "static/[ext]/[name]-[hash].[ext]"
+        assetFileNames: "static/[ext]/[name]-[hash].[ext]"
       }
     }
   },
@@ -20,7 +19,6 @@ export default defineConfig({
       "@": resolve(__dirname, "src") // 設置 '@' 指向 'src' 目錄
     }
   },
-  base: "./", // 設置打包路徑
   server: {
     port: 8010,
     open: false,
