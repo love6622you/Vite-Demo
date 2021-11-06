@@ -1,22 +1,35 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '@/views/Home.vue'
-import Vuex from '@/views/Vuex.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    component: () => import('@/layout/Main.vue'),
+    redirect: '/home',
+    meta: {
+      title: 'MainLayout'
+    },
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        meta: {
+          title: 'Home'
+        },
+        component: () => import('@/views/Home.vue')
+      }
+    ]
   },
   {
-    path: '/vuex',
-    name: 'Vuex',
-    component: Vuex
+    path: '/404',
+    name: '404',
+    meta: {
+      title: '404'
+    },
+    component: () => import('@/views/ErrPage.vue')
   },
   {
-    path: '/axios',
-    name: 'Axios',
-    component: () => import('@/views/axios.vue')
+    path: '/:catchAll(.*)',
+    redirect: { name: '404' }
   }
 ]
 
